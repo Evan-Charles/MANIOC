@@ -1,6 +1,6 @@
 ![Capture](https://github.com/ismaelgiovannetti/MANIOC/assets/115568732/f738351a-1777-4860-bd61-f5602f3ac26d)
 
-# MANIOC
+# MANIOC (as a joke)
 Machine À Naissances Itératives d'Objets Cosmiques
 
 Ce projet implémente une simulation simple d'un système solaire avec N planètes orbitant autour de N soleils. L'application est développée en C# avec le framework Windows Forms.
