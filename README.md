@@ -1,3 +1,5 @@
+![Capture](https://github.com/ismaelgiovannetti/MANIOC/assets/115568732/f738351a-1777-4860-bd61-f5602f3ac26d)
+
 # MANIOC
 Machine À Naissances Itératives d'Objets Cosmiques
 
