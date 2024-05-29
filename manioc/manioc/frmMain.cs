@@ -5,14 +5,11 @@ namespace manioc
 {
     public partial class frmMain : Form
     {
-        private Planet planet;
+        private Sun sun = new("Sun", 50);
+        private List<Planet> _planets = new();
         public frmMain()
         {
             InitializeComponent();
-
-            //Initialize the sun and the planet
-            Sun sun = new ("Sun", 50);
-            planet = new ("Earth", 20, 200, sun);
 
             //Position the sun at the center of the panel
             sun.X = plan.Width / 2;
@@ -20,12 +17,16 @@ namespace manioc
 
             //Timer to move planet
             moveCelestial.Start();
-
         }
 
         private void moveCelestial_Tick(object sender, EventArgs e)
         {
-            planet.UpdatePosition();
+            //Update the position of the planet
+            foreach (var planet in _planets)
+            {
+                planet.UpdatePosition();
+            }
+
             plan.Invalidate();
         }
 
@@ -34,15 +35,23 @@ namespace manioc
             var g = e.Graphics;
 
             //Draw the sun
-            var sun = planet.Sun;
-            if(sun != null)
+            if (sun != null)
             {
                 g.FillEllipse(Brushes.Yellow, (float)sun.X - (float)sun.Diameter / 2, (float)sun.Y - (float)sun.Diameter / 2, (float)sun.Diameter, (float)sun.Diameter);
             }
 
             //Draw the planet
-            g.FillEllipse(Brushes.Blue, (float)planet.X - (float)planet.Diameter / 2, (float)planet.Y - (float)planet.Diameter / 2, (float)planet.Diameter, (float)planet.Diameter);
+            foreach (var planet in _planets)
+            {
+                g.FillEllipse(planet.Brush, (float)planet.X - (float)planet.Diameter / 2, (float)planet.Y - (float)planet.Diameter / 2, (float)planet.Diameter, (float)planet.Diameter);
+            }
+        }
 
+        private void addPlanet_Click(object sender, EventArgs e)
+        {
+            //Random diamaeter and distance from sun
+            Random random = new();
+            _planets.Add(new Planet("Planet", random.Next(10, 30), random.Next(50, 200), sun, 0));
         }
     }
 }
